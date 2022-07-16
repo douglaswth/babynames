@@ -36,6 +36,7 @@ class BabyName < OpenStruct
 end
 
 get '/BabyNames/:year' do |year|
+  raise Sinatra::NotFound unless year =~ /^\d+$/
   file = Pathname.new(__dir__).join('data', "yob#{year}.txt")
   raise Sinatra::NotFound unless file.exist?
 
